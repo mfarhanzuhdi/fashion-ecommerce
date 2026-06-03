@@ -9,7 +9,7 @@ WORKDIR /app
 COPY pom.xml .
 
 # Download dependencies (cache layer)
-RUN mvn dependency:download-sources -DskipTests
+RUN mvn dependency:resolve dependency:resolve-plugins -DskipTests
 
 # Copy source code
 COPY src ./src
