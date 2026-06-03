@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fashion_ecommerce_dev
+    username: admin
+    password: admin_password
+
+logging:
+  level:
+    root: DEBUG
+    com.fashionstore: DEBUG
+    org.springframework: DEBUG
+    org.hibernate.SQL: DEBUG
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always

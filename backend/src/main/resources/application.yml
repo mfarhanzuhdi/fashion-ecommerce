@@ -1,0 +1,78 @@
+spring:
+  application:
+    name: fashion-ecommerce-backend
+  
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    open-in-view: false
+  
+  # Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fashion_ecommerce_db
+    username: admin
+    password: admin_password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 20000
+  
+  # Jackson Configuration
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: true
+    time-zone: UTC
+
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    min-response-size: 1024
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.fashionstore: DEBUG
+    org.springframework.web: DEBUG
+    org.hibernate: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Actuator - For monitoring & health checks
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+# JWT Configuration
+app:
+  jwt:
+    secret: my-super-secret-key-for-signing-jwt-tokens-that-should-be-very-long-and-secure
+    expiration: 86400000
+    refresh-expiration: 604800000
+
+# OpenAPI/Swagger Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
